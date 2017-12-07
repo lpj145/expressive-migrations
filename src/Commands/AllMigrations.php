@@ -10,13 +10,13 @@ class AllMigrations extends MigrationBaseCommand
 {
     public function process(InputInterface $input, OutputInterface $output)
     {
-        $getAllCommand = $this->getApplication()->get('getAllMigrations');
-        $createCommand = $this->getApplication()->get('createMigration');
+        $getAllCommand = $this->getApplication()->get('migrate');
+        $createCommand = $this->getApplication()->get('migrate:commit');
         $migrations = $getAllCommand->execute(new ArrayInput([]), new NullOutput());
 
         foreach ($migrations as $migration) {
             $inputArgs = new ArrayInput([
-                'command' => 'createMigration',
+                'command' => 'migrate:commit',
                 'name' => $migration
             ]);
 

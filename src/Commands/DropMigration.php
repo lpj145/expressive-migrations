@@ -19,7 +19,6 @@ class DropMigration extends MigrationBaseCommand
     {
         $this
             ->setDescription('Drop migration by migration name')
-            ->setAliases(['dropMigration'])
             ->addArgument('name', InputArgument::REQUIRED, 'migration name');
     }
 

@@ -27,7 +27,6 @@ class ListMigrations extends MigrationBaseCommand
     public function describe()
     {
         $this
-            ->setDescription('List all migrations registered')
-            ->setAliases(['getAllMigrations']);
+            ->setDescription('List all migrations registered');
     }
 }

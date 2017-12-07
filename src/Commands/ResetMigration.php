@@ -10,17 +10,17 @@ class ResetMigration extends MigrationBaseCommand
 {
     public function process(InputInterface $input, OutputInterface $output)
     {
-        $getAllMigrationsCommand = $this->getApplication()->get('getAllMigrations');
+        $getAllMigrationsCommand = $this->getApplication()->get('migrate');
         $migrations = $getAllMigrationsCommand->execute(new ArrayInput([]), new NullOutput());
-        $dropCommand = $this->getApplication()->get('dropMigration');
+        $dropCommand = $this->getApplication()->get('migrate:drop');
 
         foreach ($migrations as $migration) {
             $inputArgs = [
-                'command' => 'dropMigration',
+                'command' => 'migrate:drop',
                 'name' => $migration
             ];
 
-            $dropCommand->execute($inputArgs, $output);
+            $dropCommand->execute(new ArrayInput($inputArgs), $output);
         }
 
         $output->writeln(sizeof($migrations).' are droped with success!');

@@ -21,7 +21,6 @@ class CreateMigration extends MigrationBaseCommand
             ->setDescription('Create migration from \'migrations\' on container registered')
             ->setHelp('migrate "CreateUsersTable"')
             ->addArgument('name', InputArgument::REQUIRED, 'name of migrate is required')
-            ->setAliases(['createMigration'])
             ->addUsage('migrate CreateUsersTable');
     }
 
