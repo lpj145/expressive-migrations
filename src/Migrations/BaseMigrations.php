@@ -15,7 +15,13 @@ abstract class BaseMigrations
      */
     private $schema;
 
-    public function __construct(DatabaseManager $table)
+    /**
+     * BaseMigrations constructor.
+     * Pass Capsule Manager by laravel
+     * @param $table
+     * @throws \ErrorException
+     */
+    public function __construct($table)
     {
         if ($this->tableName) {
             throw new \ErrorException(get_class($this).' tableName property is empty');
