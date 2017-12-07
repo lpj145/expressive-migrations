@@ -23,7 +23,7 @@ abstract class BaseMigrations
      */
     public function __construct($table)
     {
-        if ($this->tableName) {
+        if (!$this->tableName) {
             throw new \ErrorException(get_class($this).' tableName property is empty');
         }
 
