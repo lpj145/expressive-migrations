@@ -21,6 +21,7 @@
   "extra": {
     "zf": {
       "config-provider" : [
+        "ExpressiveMigrations\\ConfigProvider",
         "ExpressiveMigrations\\ExpressiveMigrationConfigProvider"
       ]
     }
