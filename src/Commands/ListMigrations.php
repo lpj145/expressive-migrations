@@ -17,7 +17,7 @@ class ListMigrations extends MigrationBaseCommand
 
     public function process(InputInterface $input, OutputInterface $output)
     {
-        $migrations = $this->container->get('config')[self::MIGRATION_INDEX];
+        $migrations = $this->getAllMigrations();
 
         $output->writeln('All migrations registered is:');
         $output->writeln($migrations);

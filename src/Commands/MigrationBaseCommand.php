@@ -47,6 +47,16 @@ abstract class MigrationBaseCommand extends Command implements MigrationCommandC
         return $helper->ask($input, $output, $question);
     }
 
+    protected function getAllMigrations()
+    {
+        $migrationsWithoutNamespace = [];
+        $migrations = $this->container->get('config')['migrations'] ?? [];
+        foreach ($migrations as $migration) {
+            $migrationsWithoutNamespace[] = (new \ReflectionClass($migration))->getShortName();
+        }
+        return $migrationsWithoutNamespace;
+    }
+
 
     abstract public function process(InputInterface $input, OutputInterface $output);
     abstract public function describe();

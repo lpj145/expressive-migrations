@@ -16,8 +16,7 @@ class ResetMigration extends MigrationBaseCommand
             return;
         }
 
-        $getAllMigrationsCommand = $this->getApplication()->get('migrate');
-        $migrations = $getAllMigrationsCommand->execute(new ArrayInput([]), new NullOutput());
+        $migrations = $this->getAllMigrations();
         $dropCommand = $this->getApplication()->get('migrate:drop');
 
         foreach ($migrations as $migration) {
