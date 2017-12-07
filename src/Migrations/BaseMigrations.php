@@ -37,7 +37,7 @@ abstract class BaseMigrations
     }
 
 
-    abstract protected function up(SchemaBuilderContract $table);
-    abstract protected function down(SchemaBuilderContract $table);
+    abstract protected function up($table);
+    abstract protected function down($table);
 
 }
