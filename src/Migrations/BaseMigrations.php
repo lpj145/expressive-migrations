@@ -37,7 +37,7 @@ abstract class BaseMigrations
         });
     }
 
-    public function flush()
+    public function drop()
     {
         $this->schema->drop($this->tableName);
     }
