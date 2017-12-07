@@ -28,6 +28,6 @@ class ListMigrations extends MigrationBaseCommand
     {
         $this
             ->setDescription('List all migrations registered')
-            ->setAliases('getAllMigrations');
+            ->setAliases(['getAllMigrations']);
     }
 }
