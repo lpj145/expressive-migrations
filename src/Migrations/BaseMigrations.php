@@ -32,14 +32,14 @@ abstract class BaseMigrations
 
     public function commit()
     {
-        $this->schema->create($this->tableName, function (SchemaBuilderContract $table){
-           $this->up($table);
+        $this->schema->create($this->tableName, function ($table){
+           return $this->up($table);
         });
     }
 
     public function drop()
     {
-        $this->schema->drop($this->tableName);
+        return $this->schema->drop($this->tableName);
     }
 
 
