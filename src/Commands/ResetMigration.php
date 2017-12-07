@@ -27,7 +27,7 @@ class ResetMigration extends MigrationBaseCommand
             $dropCommand->run(new ArrayInput($inputArgs), $output);
         }
 
-        $output->writeln(sizeof($migrations).' are droped with success!');
+        $output->writeln(sizeof($this->migrations).' are droped with success!');
     }
 
     public function describe()
