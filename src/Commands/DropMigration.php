@@ -5,13 +5,20 @@ use ExpressiveMigrations\Contracts\DatabaseManager;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 class DropMigration extends MigrationBaseCommand
 {
     public function process(InputInterface $input, OutputInterface $output)
     {
         $migrateName = $input->getArgument('name');
-        $input->setInteractive(true);
+        $helper = $this->getHelper('question');
+        $question = new ConfirmationQuestion('Do you can continue this action ?');
+
+        if (!$helper->ask($input, $output, $question)) {
+            return;
+        }
+
         (new $migrateName($this->container->get(DatabaseManager::class)))
             ->drop();
 
