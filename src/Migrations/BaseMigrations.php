@@ -27,7 +27,7 @@ abstract class BaseMigrations
             throw new \ErrorException(get_class($this).' tableName property is empty');
         }
 
-        $this->schema = $table->getDatabaseManager();
+        $this->schema = $table->getDatabaseManager()->getSchemaBuilder();
     }
 
     public function commit()
