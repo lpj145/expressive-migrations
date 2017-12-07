@@ -17,5 +17,12 @@
   "require": {
     "psr/container": "^1.0",
     "symfony/console": "^4.0"
+  },
+  "extra": {
+    "zf": {
+      "config-provider" : [
+        "ExpressiveMigrations\\ExpressiveMigrationProvider"
+      ]
+    }
   }
 }
