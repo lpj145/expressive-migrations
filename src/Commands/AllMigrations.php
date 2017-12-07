@@ -13,10 +13,10 @@ class AllMigrations extends MigrationBaseCommand
         $migrationsSuccess = 0;
         $createCommand = $this->getApplication()->get('migrate:commit');
 
-        foreach ($this->migrations as $migration) {
+        foreach ($this->migrations as $migrationName => $migration) {
             $inputArgs = new ArrayInput([
                 'command' => 'migrate:commit',
-                'name' => key($migration)
+                'name' => $migrationName
             ]);
 
             $createCommand->run($inputArgs, $output);
