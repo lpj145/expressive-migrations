@@ -11,7 +11,11 @@ class ResetMigration extends MigrationBaseCommand
 {
     public function process(InputInterface $input, OutputInterface $output)
     {
-        $this->confirmAction($input, $output);
+        if (!$this->confirmAction($input, $output))
+        {
+            return;
+        }
+
         $getAllMigrationsCommand = $this->getApplication()->get('migrate');
         $migrations = $getAllMigrationsCommand->execute(new ArrayInput([]), new NullOutput());
         $dropCommand = $this->getApplication()->get('migrate:drop');

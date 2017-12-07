@@ -43,7 +43,7 @@ abstract class MigrationBaseCommand extends Command implements MigrationCommandC
     protected function confirmAction(InputInterface $input, OutputInterface $output)
     {
         $helper = $this->getHelper('question');
-        $question = new ConfirmationQuestion('Continue this action? you data can be lost!');
+        $question = new ConfirmationQuestion('Continue this action? you data can be lost! (y,n)');
         return $helper->ask($input, $output, $question);
     }
 
