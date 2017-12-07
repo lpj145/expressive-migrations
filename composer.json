@@ -1,0 +1,21 @@
+{
+  "name": "marcosadantas/expressive-migrations",
+  "description": "Provide command for console with Symfony console and Blueprint schema builder",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Marcos Dantas",
+      "email": "marcos.adantas@hotmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "ExpressiveMigrations\\": "src/"
+    }
+  },
+  "require": {
+    "psr/container": "^1.0",
+    "symfony/console": "^4.0"
+  }
+}
