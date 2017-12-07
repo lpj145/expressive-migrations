@@ -19,7 +19,7 @@ class DropMigration extends MigrationBaseCommand
             return;
         }
 
-        (new $migrateName($this->container->get(DatabaseManager::class)))
+        $this->getMigration($migrateName)
             ->drop();
 
         $output->writeln($migrateName.' drop with success!');

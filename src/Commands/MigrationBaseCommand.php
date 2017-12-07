@@ -1,6 +1,7 @@
 <?php
 namespace ExpressiveMigrations\Commands;
 
+use ExpressiveMigrations\Contracts\DatabaseManager;
 use ExpressiveMigrations\Contracts\MigrationCommandContract;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -28,6 +29,14 @@ abstract class MigrationBaseCommand extends Command implements MigrationCommandC
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         return $this->process($input, $output);
+    }
+
+    protected function getMigration(string $migrateName)
+    {
+        if (!class_exists($migrateName)) {
+            throw new \ErrorException($migrateName.' not found on registered migrations!');
+        }
+        return new $migrateName($this->container->get(DatabaseManager::class));
     }
 
 

@@ -11,7 +11,7 @@ class CreateMigration extends MigrationBaseCommand
     public function process(InputInterface $input, OutputInterface $output)
     {
         $migrateName = $input->getArgument('name');
-        (new $migrateName($this->container->get(DatabaseManager::class)))
+        $this->getMigration($migrateName)
             ->commit();
     }
 
