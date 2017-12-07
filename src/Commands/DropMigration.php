@@ -11,8 +11,11 @@ class DropMigration extends MigrationBaseCommand
     public function process(InputInterface $input, OutputInterface $output)
     {
         $migrateName = $input->getArgument('name');
+        $input->setInteractive(true);
         (new $migrateName($this->container->get(DatabaseManager::class)))
             ->drop();
+
+        $output->writeln($migrateName.' drop with success!');
     }
 
     public function describe()
