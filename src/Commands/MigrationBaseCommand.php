@@ -22,12 +22,12 @@ abstract class MigrationBaseCommand extends Command implements MigrationCommandC
 
     protected function configure()
     {
-        $this->describe();
+        return $this->describe();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->process($input, $output);
+        return $this->process($input, $output);
     }
 
 
