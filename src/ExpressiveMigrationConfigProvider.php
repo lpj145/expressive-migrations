@@ -9,7 +9,7 @@ use ExpressiveMigrations\Commands\ResetMigration;
 use ExpressiveMigrations\Migrations\BaseMigrationFactory;
 use ExpressiveMigrations\Migrations\BaseMigrations;
 
-class ExpressiveMigrationProvider
+class ExpressiveMigrationConfigProvider
 {
     public function __invoke()
     {
