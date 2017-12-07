@@ -11,14 +11,9 @@ class DropMigration extends MigrationBaseCommand
 {
     public function process(InputInterface $input, OutputInterface $output)
     {
+        $this->confirmAction($input, $output);
+
         $migrateName = $input->getArgument('name');
-        $helper = $this->getHelper('question');
-        $question = new ConfirmationQuestion('Do you can continue this action ?');
-
-        if (!$helper->ask($input, $output, $question)) {
-            return;
-        }
-
         $this->getMigration($migrateName)
             ->drop();
 

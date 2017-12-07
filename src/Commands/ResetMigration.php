@@ -11,23 +11,10 @@ class ResetMigration extends MigrationBaseCommand
 {
     public function process(InputInterface $input, OutputInterface $output)
     {
+        $this->confirmAction($input, $output);
         $getAllMigrationsCommand = $this->getApplication()->get('migrate');
         $migrations = $getAllMigrationsCommand->execute(new ArrayInput([]), new NullOutput());
         $dropCommand = $this->getApplication()->get('migrate:drop');
-        $helper = $this->getHelper('question');
-        $question = new ConfirmationQuestion('Do you can continue this action ?');
-
-        if (!$helper->ask($input, $output, $question)) {
-            return;
-        }
-
-        if (!$helper->ask($input, $output, $question)) {
-            return;
-        }
-
-        if (!$helper->ask($input, $output, $question)) {
-            return;
-        }
 
         foreach ($migrations as $migration) {
             $inputArgs = [

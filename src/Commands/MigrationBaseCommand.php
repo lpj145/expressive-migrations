@@ -7,6 +7,7 @@ use Psr\Container\ContainerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 abstract class MigrationBaseCommand extends Command implements MigrationCommandContract
 {
@@ -37,6 +38,13 @@ abstract class MigrationBaseCommand extends Command implements MigrationCommandC
             throw new \ErrorException($migrateName.' not found on registered migrations!');
         }
         return new $migrateName($this->container->get(DatabaseManager::class));
+    }
+
+    protected function confirmAction(InputInterface $input, OutputInterface $output)
+    {
+        $helper = $this->getHelper('question');
+        $question = new ConfirmationQuestion('Continue this action? you data can be lost!');
+        return $helper->ask($input, $output, $question);
     }
 
 
