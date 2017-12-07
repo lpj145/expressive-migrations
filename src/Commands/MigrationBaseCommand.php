@@ -15,11 +15,16 @@ abstract class MigrationBaseCommand extends Command implements MigrationCommandC
      * @var ContainerInterface
      */
     protected $container;
+    /**
+     * @var array
+     */
+    protected $migrations = [];
 
     public function __construct($name, ContainerInterface $container)
     {
         parent::__construct($name);
         $this->container = $container;
+        $this->migrations = $this->getAllMigrations();
     }
 
     protected function configure()
@@ -34,10 +39,10 @@ abstract class MigrationBaseCommand extends Command implements MigrationCommandC
 
     protected function getMigration(string $migrateName)
     {
-        if (!class_exists($migrateName)) {
+        if (!isset($this->migrations[$migrateName])) {
             throw new \ErrorException($migrateName.' not found on registered migrations!');
         }
-        return new $migrateName($this->container->get(DatabaseManager::class));
+        return new $this->migrations[$migrateName]($this->container->get(DatabaseManager::class));
     }
 
     protected function confirmAction(InputInterface $input, OutputInterface $output)
@@ -52,7 +57,7 @@ abstract class MigrationBaseCommand extends Command implements MigrationCommandC
         $migrationsWithoutNamespace = [];
         $migrations = $this->container->get('config')['migrations'] ?? [];
         foreach ($migrations as $migration) {
-            $migrationsWithoutNamespace[] = (new \ReflectionClass($migration))->getShortName();
+            $migrationsWithoutNamespace[(new \ReflectionClass($migration))->getShortName()] = $migration;
         }
         return $migrationsWithoutNamespace;
     }

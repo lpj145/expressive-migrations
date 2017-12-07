@@ -17,11 +17,11 @@ class ListMigrations extends MigrationBaseCommand
 
     public function process(InputInterface $input, OutputInterface $output)
     {
-        $migrations = $this->getAllMigrations();
-
         $output->writeln('All migrations registered is:');
-        $output->writeln($migrations);
-        return $migrations;
+        foreach ($this->migrations as $migrationName => $migration)
+        {
+            $output->writeln($migrationName);
+        }
     }
 
     public function describe()

@@ -16,13 +16,12 @@ class ResetMigration extends MigrationBaseCommand
             return;
         }
 
-        $migrations = $this->getAllMigrations();
         $dropCommand = $this->getApplication()->get('migrate:drop');
 
-        foreach ($migrations as $migration) {
+        foreach ($this->migrations as $migration) {
             $inputArgs = [
                 'command' => 'migrate:drop',
-                'name' => $migration
+                'name' => key($migration)
             ];
 
             $dropCommand->run(new ArrayInput($inputArgs), $output);
