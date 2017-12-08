@@ -56,6 +56,11 @@ abstract class MigrationBaseCommand extends Command implements MigrationCommandC
     {
         $migrationsWithoutNamespace = [];
         $migrations = $this->container->get('config')['migrations'] ?? [];
+
+        if (!is_array($migrations)) {
+            throw new \InvalidArgumentException('on configs \'migrations\' are not array!');
+        }
+
         foreach ($migrations as $migration) {
             $migrationsWithoutNamespace[(new \ReflectionClass($migration))->getShortName()] = $migration;
         }
